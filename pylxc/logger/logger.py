@@ -8,7 +8,7 @@ def initializeLogger(outputDir):
     logger.setLevel(logging.DEBUG)
 
     # create error file handler and set level to error
-    handler = logging.FileHandler(os.path.join(outputDir, "error.log"),"w", encoding=None, delay="true")
+    handler = logging.FileHandler(os.path.join(outputDir, "pylxc.log"),"w", encoding=None, delay="true")
 
     handler.setLevel(logging.ERROR)
     formatter = logging.Formatter(logFormat)
@@ -16,7 +16,7 @@ def initializeLogger(outputDir):
     logger.addHandler(handler)
 
     # create debug file handler and set level to debug
-    handler = logging.FileHandler(os.path.join(outputDir, "all.log"),"w")
+    handler = logging.FileHandler(os.path.join(outputDir, "pylxc.log"),"w")
     handler.setLevel(logging.DEBUG)
     formatter = logging.Formatter(logFormat)
     handler.setFormatter(formatter)
