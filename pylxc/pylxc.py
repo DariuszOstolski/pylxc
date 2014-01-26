@@ -3,6 +3,14 @@ import argparse
 from logger import logger
 import logging
 
+class LXCPluginsScanner(object):
+    SUPPORTED_LXC_CONTAINERS = ['gentoo']
+    def __init__(self):
+        pass
+
+    def importPlugins(self):
+        pass
+
 class SubParser(argparse.ArgumentParser):
     def __init__(self, **kwargs):
         super(argparse.ArgumentParser, self).__init__(kwargs)
