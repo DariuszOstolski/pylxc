@@ -54,9 +54,9 @@ def main(argv = None):
     if options.verbose<1:
         logger.getLogger().setLevel(logging.ERROR)
     elif options.verbose<2:
-        logger.getLogger().setLevel(logging.DEBUG)
-    else:
         logger.getLogger().setLevel(logging.INFO)
+    else:
+        logger.getLogger().setLevel(logging.DEBUG)
 
     options.executeCommand(options, None)
 
