@@ -1,7 +1,7 @@
 import logging
 import os
 
-logFormat = "[%(levelname)s] %(name)s %(message)s"
+logFormat = "[%(levelname)s]: %(name)s %(message)s"
 
 def initializeLogger(outputDir):
     logger = getLogger()
