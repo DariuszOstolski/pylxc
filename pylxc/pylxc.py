@@ -1,10 +1,11 @@
+from distutils.command.config import config
 import sys
 import argparse
 from logger import logger
 import logging
 import types
 import importlib
-
+import PyLxcConfiguration
 
 log = logging.getLogger("pylxc.main")
 
@@ -40,13 +41,17 @@ class ArgumentParser(argparse.ArgumentParser):
         subParser.setMainModule = types.MethodType(setMainModule, subParser)
         return subParser
 
+def getDefaultCacheDir():
+    pass
 
 def main(argv = None):
     if argv is None:
         argv = sys.argv[1:]
 
+    config = PyLxcConfiguration.get()
     argParser = ArgumentParser()
     argParser.add_argument( '--verbose', '-v', action='count', help="Log more detailed output")
+    argParser.add_argument('-c', '--cache-directory', action='store', help='Cache directory', default=config.getDefaultCacheConfiguration(), dest='CacheDirectory')
     loader = LXCPluginsLoader()
     loader.importPlugins(argParser)
 

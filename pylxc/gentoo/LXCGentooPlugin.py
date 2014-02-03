@@ -21,6 +21,7 @@ class LXCGentooPlugin(LXCPlugin.LXCPlugin):
         LXCPlugin.LXCPlugin.register(self, argParser)
         subParser = argParser.addSubParser('gentoo', help="LXC gentoo managment")
         subParser.add_argument('create', help='Create lxc gentoo guest container')
+
         subParser.setMainModule(LXCGentooCommand())
 
 
