@@ -1,9 +1,29 @@
 import LXCPlugin
 import logging
+import PyLxcConfiguration
+
 
 log = logging.getLogger("pylxc.gentoo")
 
+class LXCDefaultConfig(PyLxcConfiguration.PyLxcConfiguration):
+    """
+
+    """
+
+    PythonToGentooArchs = dict(x86_64='amd64', i386='x86')
+    def __init__(self):
+        PyLxcConfiguration.PyLxcConfiguration.__init__(self, *args, **kwargs)
+
+    def getStageUrl(self):
+        pass
+
+
+
+
 class LXCGentooCommand(LXCPlugin.LXCPluginCommand):
+    """
+
+    """
     def __init__(self):
         pass
     def __call__(self, parsedArgs, lxcConfiguration):

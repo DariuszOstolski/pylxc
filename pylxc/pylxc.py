@@ -41,8 +41,7 @@ class ArgumentParser(argparse.ArgumentParser):
         subParser.setMainModule = types.MethodType(setMainModule, subParser)
         return subParser
 
-def getDefaultCacheDir():
-    pass
+
 
 def main(argv = None):
     if argv is None:
@@ -51,7 +50,17 @@ def main(argv = None):
     config = PyLxcConfiguration.get()
     argParser = ArgumentParser()
     argParser.add_argument( '--verbose', '-v', action='count', help="Log more detailed output")
-    argParser.add_argument('-c', '--cache-directory', action='store', help='Cache directory', default=config.getDefaultCacheConfiguration(), dest='CacheDirectory')
+    argParser.add_argument('-c', '--cache-directory',
+                           action='store',
+                           help='Cache directory',
+                           default=config.getDefaultCacheConfiguration(),
+                           dest='CacheDirectory')
+
+    argParser.add_argument('--architecture',
+                           action='store',
+                           help='LXC guest architecture',
+                           default=config.getDefaultArch(),
+                           dest='Architecture')
     loader = LXCPluginsLoader()
     loader.importPlugins(argParser)
 
@@ -63,6 +72,9 @@ def main(argv = None):
     else:
         logger.getLogger().setLevel(logging.DEBUG)
 
+
+    log.debug("Architecture: {0}".format(options.Architecture))
+    log.debug("Cache repository: {0}".format(options.CacheDirectory))
     options.executeCommand(options, None)
 
 
