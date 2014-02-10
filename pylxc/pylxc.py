@@ -48,18 +48,19 @@ def main(argv = None):
         argv = sys.argv[1:]
 
     config = PyLxcConfiguration.get()
+
     argParser = ArgumentParser()
     argParser.add_argument( '--verbose', '-v', action='count', help="Log more detailed output")
     argParser.add_argument('-c', '--cache-directory',
                            action='store',
                            help='Cache directory',
-                           default=config.getDefaultCacheConfiguration(),
+                           default=PyLxcConfiguration.getDefaultCacheConfiguration(),
                            dest='CacheDirectory')
 
     argParser.add_argument('--architecture',
                            action='store',
                            help='LXC guest architecture',
-                           default=config.getDefaultArch(),
+                           default=PyLxcConfiguration.getDefaultArch(),
                            dest='Architecture')
     loader = LXCPluginsLoader()
     loader.importPlugins(argParser)
